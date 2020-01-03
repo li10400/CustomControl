@@ -272,12 +272,14 @@ MonoBehaviour:
   CreateItems:
     ItemSize: {x: 100, y: 100}
     Interval: 10
-    ItemCount: 5
+    ItemCount: 11
     ItemPre: {fileID: 1071384096}
     Parent: {fileID: 361934027}
     ListItem: []
     LeftBounds: 0
     RightBounds: 0
+  ItemControl:
+    Speed: 10
 --- !u!1 &424177701
 GameObject:
   m_ObjectHideFlags: 0

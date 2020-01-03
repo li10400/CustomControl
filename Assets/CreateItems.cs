@@ -6,23 +6,26 @@ using UnityEngine;
 [Serializable]
 public class CreateItems
 {
-    public Vector2 ItemSize;
+    public Vector2 ItemSize;//item 大小
 
-    public float Interval;
+    public float Interval;//两个item 之间的间隔
 
-    public int ItemCount;
+    public int ItemCount;//将创建的item 数量
 
     public GameObject ItemPre, Parent;
 
-    public List<Item> ListItem;
+    public List<Item> ListItem;//将创建好的item 存储到该list 中
 
-    public float LeftBounds, RightBounds;
+    public float LeftBounds, RightBounds;//左边界，右边界
+    CustomSlider _customSlider;
 
-    public void Creat() {
-        ItemCount = ItemCount % 2 == 0 ? ItemCount + 1 : ItemCount;
+    public void Creat(CustomSlider _customSlider) {
+        this._customSlider = _customSlider;
+        ItemCount = ItemCount % 2 == 0 ? ItemCount + 1 : ItemCount;//将item数量设置成奇数
         CreatItems();
     }
 
+    //主要是创建items
     private void CreatItems()
     {
         float offset = ((ItemSize.x + Interval) * (ItemCount-1)) / 2;
@@ -33,7 +36,7 @@ public class CreateItems
             v.x = (ItemSize.x + Interval)*i-offset;
             go.transform.localPosition = v;
             Item item = go.GetComponent<Item>();
-            item.SetIndex(i);
+            item.SetIndex(i, _customSlider);
             ListItem.Add(item);
         }
         LeftBounds = ListItem[0].transform.localPosition.x- ItemSize.x - Interval;

@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public class CustomSlider : MonoBehaviour,IDragHandler, IEndDragHandler
 {
-    public CreateItems CreateItems;
-    public ItemControl ItemControl;
+    public CreateItems CreateItems;//主要作用创建item
+    public ItemControl ItemControl;//进行无限制的左右滑动
     void Start()
     {
-        CreateItems.Creat();
+        CreateItems.Creat(this);
         ItemControl.Init(this,CreateItems);
     }
 
@@ -20,6 +20,11 @@ public class CustomSlider : MonoBehaviour,IDragHandler, IEndDragHandler
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        
+        ItemControl.AutomaticCenter();
+    }
+
+    public void ItemCenter(Item item)
+    {
+        ItemControl.ItemCenter( item);
     }
 }
